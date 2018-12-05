@@ -96,7 +96,7 @@
                 : Coffee :
             </ListBox>
 
-            <ComboBox Height = "25" Width = "200" HorizontalAlignment = "Center" Margin = "10,0,10,0" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox Height = "25" Width = "200" HorizontalAlignment = "Center" Margin = "10,0,10,0" >
                 <ComboBoxItem HorizontalAlignment="Center" Content = "Americano"/>
                 <ComboBoxItem HorizontalAlignment="Center" Content = "Cappuccino"/>
                 <ComboBoxItem HorizontalAlignment="Center" Content = "Late"/>
