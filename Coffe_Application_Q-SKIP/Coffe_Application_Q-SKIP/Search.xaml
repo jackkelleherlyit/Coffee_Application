@@ -1,0 +1,91 @@
+﻿<Page x:Class="Coffe_Application_Q_SKIP.Search"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coffe_Application_Q_SKIP"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Search">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Name="stcktabs" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="0,10,0,10" >
+            <TextBox Name="txboxSearch"
+                     Height="26"
+                     Width="100"
+                    />
+            <Button Name="btnSearch"
+                    Height="26"
+                    Width="100"
+                    FontWeight="Heavy"
+                    Content="Search"
+                    Margin="2,0"
+                    />
+            <Button Name="btnCoffee"
+                    Height="26"
+                    Width="100"
+                    FontWeight="Heavy"
+                    Content="Coffee"
+                    Margin="2,0"
+                    />
+            <Button Name="btnMyOrder"
+                    Height="26"
+                    Width="100"
+                    FontWeight="Heavy"
+                    Content="My Order"
+                    Margin="2,0"
+                    />
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal" Margin="0,10,0,10" >
+            <Button Name="btnStock"
+                    Height="26"
+                    Width="100"
+                    FontWeight="Heavy"
+                    Content="EXIT" 
+                    Foreground="Blue"
+                    HorizontalAlignment="Right"
+                    Margin="2,0"
+                    />
+        </StackPanel>
+
+        <StackPanel Name="sctListBox" Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="0,10,0,10">
+
+            <ListBox Name="listBoxSmall">
+                Small
+            </ListBox>
+
+            <ListBox Name="listBoxMedium">
+                Medium
+            </ListBox>
+
+            <ListBox Name="listBoxLarge">
+                Large
+            </ListBox>
+
+
+
+        </StackPanel>
+
+
+
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\coffeemaker.PNG"
+                        Stretch="UniformToFill">
+
+            </ImageBrush>
+        </Grid.Background>
+    </Grid>
+</Page>
