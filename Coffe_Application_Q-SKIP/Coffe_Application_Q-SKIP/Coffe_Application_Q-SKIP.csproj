@@ -157,7 +157,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DBlibrary\DBlibrary.csproj">
+      <Project>{559e454b-8b50-414d-8c3e-4ae0a00c6ba8}</Project>
+      <Name>DBlibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\coffeemaker.PNG" />
   </ItemGroup>

@@ -15,8 +15,8 @@ namespace DBlibrary
     
     public partial class coffeeDBEntities : DbContext
     {
-        public coffeeDBEntities()
-            : base("name=coffeeDBEntities")
+        public coffeeDBEntities(string connectionString)
+            : base(connectionString)
         {
         }
     
