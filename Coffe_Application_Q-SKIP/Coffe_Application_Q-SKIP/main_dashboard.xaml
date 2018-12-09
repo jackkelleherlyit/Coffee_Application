@@ -1,4 +1,4 @@
-﻿<Page x:Class="Coffe_Application_Q_SKIP.Customer_dashboard"
+﻿<Page x:Class="Coffe_Application_Q_SKIP.main_dashboard"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:Coffe_Application_Q_SKIP"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Customer_dashboard">
-
+      Title="main_dashboard">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -30,7 +29,6 @@
                     FontWeight="Heavy"
                     Content="Search"
                     Margin="2,0"
-                    Click="btnSearch_Click"
                     />
             <Button Name="btnCoffee"
                     Height="26"
@@ -46,8 +44,6 @@
                     FontWeight="Heavy"
                     Content="My Order"
                     Margin="2,0"
-                    Click="btnMyOrder_Click"
-                   
                     />
         </StackPanel>
 
@@ -60,7 +56,6 @@
                     Foreground="Blue"
                     HorizontalAlignment="Right"
                     Margin="2,0"
-                    Click="btnExit_Click"
                     />
         </StackPanel>
 
@@ -74,7 +69,7 @@
                                       Opacity="50"
                                       ShadowDepth="4"/>
                 </Border.Effect>
-                <Frame Name="frmCustomer" NavigationUIVisibility="Automatic"/>
+                <Frame Name="frmMain_Window" NavigationUIVisibility="Automatic"/>
             </Border>
         </DockPanel>
 
@@ -86,3 +81,4 @@
         </Grid.Background>
     </Grid>
 </Page>
+

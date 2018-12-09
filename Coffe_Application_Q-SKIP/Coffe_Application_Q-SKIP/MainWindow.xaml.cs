@@ -28,5 +28,19 @@ namespace Coffe_Application_Q_SKIP
         {
             InitializeComponent();
         }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            string currentUser = tbxUsername.Text;
+            string currentPassword = tbxPassword.Password;
+           // foreach(var user in db.Users.Where(t => t.user_ID == currentUser && t.Password == currentPassword))
+              
+            {
+
+
+            }
+            ;
+           
+        }
     }
 }

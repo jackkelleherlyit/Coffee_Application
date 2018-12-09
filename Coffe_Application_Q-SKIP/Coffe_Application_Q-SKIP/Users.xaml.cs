@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace Coffe_Application_Q_SKIP
 {
     /// <summary>
-    /// Interaction logic for Coffee.xaml
+    /// Interaction logic for Users.xaml
     /// </summary>
-    public partial class Coffee : Page
+    public partial class Users : Page
     {
-        public Coffee()
+        public Users()
         {
             InitializeComponent();
-        }
-
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Orders.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

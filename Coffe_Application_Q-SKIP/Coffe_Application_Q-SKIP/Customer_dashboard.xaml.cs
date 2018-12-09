@@ -24,5 +24,29 @@ namespace Coffe_Application_Q_SKIP
         {
             InitializeComponent();
         }
+
+        private void btnCoffee_Click(object sender, RoutedEventArgs e)
+        {
+            Coffee coffee = new Coffee();
+            frmCustomer.Navigate(coffee);
+        }
+
+        private void btnMyOrder_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("Orders.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("Search.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("Login.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }

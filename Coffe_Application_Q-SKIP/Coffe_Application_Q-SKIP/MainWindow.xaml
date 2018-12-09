@@ -65,7 +65,7 @@
                     Margin="1,10" ToolTip="Click this button to close"/>
 
             <Button Name="btnOk" Content="Ok" Height="26" Width="130"
-                    Margin="1,10" ToolTip="Click this button to Create Account"/>
+                    Margin="1,10" ToolTip="Click this button to Create Account" Click="btnOk_Click"/>
         </StackPanel>
 
 

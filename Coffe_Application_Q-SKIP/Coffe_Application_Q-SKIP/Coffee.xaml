@@ -47,45 +47,7 @@
         </DatePicker>
 
 
-        <StackPanel Grid.ColumnSpan="4" Grid.Row="0" Orientation="Horizontal" Margin="0,10,0,10" >
-            <TextBox Name="txboxSearch"
-                     Height="26"
-                     Width="100"
-                    />
-            <Button Name="btnSearch"
-                    Height="26"
-                    Width="100"
-                    FontWeight="Heavy"
-                    Content="Search"
-                    Margin="2,0"
-                    />
-            <Button Name="btnCoffee"
-                    Height="26"
-                    Width="100"
-                    FontWeight="Heavy"
-                    Content="Coffee"
-                    Margin="2,0"
-                    />
-            <Button Name="btnMyOrder"
-                    Height="26"
-                    Width="100"
-                    FontWeight="Heavy"
-                    Content="My Order"
-                    Margin="2,0"
-                    />
-        </StackPanel>
 
-        <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal" Margin="0,10,0,10" >
-            <Button Name="btnStock"
-                    Height="26"
-                    Width="100"
-                    FontWeight="Heavy"
-                    Content="EXIT" 
-                    Foreground="Blue"
-                    HorizontalAlignment="Right"
-                    Margin="2,0"
-                    />
-        </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="10,10,80,10">
 
@@ -137,29 +99,26 @@
 
 
         <StackPanel Grid.ColumnSpan="4" Grid.Row="4" Grid.Column="0" Orientation="Vertical" Margin="0,10,0,10" >
-            <Label Name="lblMessage" HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Content="PLEASE CHOOSE FROM THE ABOVE OPTIONS"
-                   FontSize="22"
-                   FontWeight="Bold"
-                   FontStyle="Italic"
-                   />
+          
+
+            <Button
+              Name="btnSubmit"
+                Grid.Column="3"
+                Grid.Row="5"
+               VerticalAlignment="Bottom"
+                    Height="34"
+                    Width="100"
+                    FontWeight="Heavy"
+                    Content="Submit"
+                    Margin="350,0"
+                    Click="btnSubmit_Click"
+             ></Button>
         </StackPanel>
 
 
-        <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="3,10,3,0" >
-            <Border BorderThickness="3" 
-                    BorderBrush="Black"
-                    CornerRadius="10"
-                    Padding="4">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray"
-                                      Opacity="50"
-                                      ShadowDepth="4"/>
-                </Border.Effect>
-                <Frame Name="frmMain"/>
-            </Border>
-        </DockPanel>
+
+        <Frame Name="frmCoffee" NavigationUIVisibility="Automatic"/>
+
 
         <Grid.Background>
             <ImageBrush ImageSource="Images\coffeemaker.PNG"
