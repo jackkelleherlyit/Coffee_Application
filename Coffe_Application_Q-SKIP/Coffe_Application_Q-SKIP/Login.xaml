@@ -68,7 +68,8 @@
                     />
 
             <Button Name="btnOk" Content="Ok" Height="26" Width="130"
-                    Margin="1,10" ToolTip="Click this button to Login"/>
+                    Margin="1,10" ToolTip="Click this button to Login"
+                    Click="btnOk_Click"/>
         </StackPanel>
 
 

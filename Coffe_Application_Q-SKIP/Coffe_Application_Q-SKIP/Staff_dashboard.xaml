@@ -31,6 +31,7 @@
                     FontWeight="Heavy"
                     Content="Search"
                     Margin="2,0"
+                    Click="btnSearch_Click"
                     />
             <Button Name="btnCoffee"
                     Height="26"
@@ -38,23 +39,26 @@
                     FontWeight="Heavy"
                     Content="Coffee"
                     Margin="2,0"
+                    Click="btnCoffee_Click"
                     />
-            <Button Name="btnMyOrder"
+            <Button Name="btnStock"
                     Height="26"
                     Width="100"
                     FontWeight="Heavy"
                     Content="Stock"
                     Margin="2,0"
+                    Click="btnStock_Click"
                     />
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="0,10,0,10" >
-            <Button Name="btnStock"
+            <Button Name="btCustomerOrder"
                     Height="26"
                     Width="100"
                     FontWeight="Heavy"
                     Content="Customer Order"
                     Margin="2,0"
+                    Click="btCustomerOrder_Click"
                     />
 
             <Button Name="btnExit"
@@ -64,7 +68,9 @@
                     Content="EXIT"
                     Margin="2,0"
                     Foreground="Blue"
-                    HorizontalAlignment="Right"/>
+                    HorizontalAlignment="Right"
+                    Click="btnExit_Click"/>
+           
         </StackPanel>
 
         <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="3,10,3,0" >

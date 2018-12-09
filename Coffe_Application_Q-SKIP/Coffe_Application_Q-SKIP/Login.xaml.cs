@@ -24,5 +24,11 @@ namespace Coffe_Application_Q_SKIP
         {
             InitializeComponent();
         }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav.Navigate(new Uri("Customer_dashboard.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 }
