@@ -16,6 +16,8 @@ namespace DBlibrary
 
     public partial class coffeeDBEntities : DbContext
     {
+        public IEnumerable<object> Users;
+
         public coffeeDBEntities(string connectionString)
             : base(connectionString)
         {
@@ -29,6 +31,6 @@ namespace DBlibrary
         public virtual DbSet<Coffee> Coffees { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public IEnumerable<object> Users { get; set; }
+        
     }
 }
