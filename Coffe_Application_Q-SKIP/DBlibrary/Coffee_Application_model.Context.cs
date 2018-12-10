@@ -10,15 +10,12 @@
 namespace DBlibrary
 {
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class coffeeDBEntities : DbContext
+    
+    public partial class CoffeeDBEntities : DbContext
     {
-        public IEnumerable<object> Users;
-
-        public coffeeDBEntities(string connectionString)
+        public CoffeeDBEntities(string connectionString)
             : base(connectionString)
         {
         }
@@ -30,7 +27,6 @@ namespace DBlibrary
     
         public virtual DbSet<Coffee> Coffees { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<User> User { get; set; }
-        
+        public virtual DbSet<User> Users { get; set; }
     }
 }

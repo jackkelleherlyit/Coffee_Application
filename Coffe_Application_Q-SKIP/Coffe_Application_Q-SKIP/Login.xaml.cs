@@ -21,7 +21,11 @@ namespace Coffe_Application_Q_SKIP
     /// </summary>
     public partial class Login : Page
     {
-        coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl res://*/Coffee_Application_model.ssdl res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source = 192.168.1.130; initial catalog = coffeeDB persist security info=True; user id = CoffeeUser; password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+
+        CoffeeDBEntities db = new CoffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.129;initial catalog=coffeeDB;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+        
+
+
 
         public Login()
         {
@@ -33,14 +37,14 @@ namespace Coffe_Application_Q_SKIP
 
             string currentUser = tbxUsrName.Text;
             string currentPassword = tbxPassword.Password;
-
-            foreach (var user in db.User.Where(t => t.email == currentUser && t.password == currentPassword));
+            foreach (var user in db.Users.Where(t => t.email == currentUser && t.password == currentPassword));
             {
                 MessageBox.Show("User authenticated");
             }
 
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Customer_dashboard.xaml", UriKind.RelativeOrAbsolute));
+
+         NavigationService nav = NavigationService.GetNavigationService(this);
+         nav.Navigate(new Uri("Customer_dashboard.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }
