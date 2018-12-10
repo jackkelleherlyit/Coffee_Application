@@ -42,10 +42,12 @@ namespace Coffe_Application_Q_SKIP
                 if (user.email == currentUser && user.password == currentPassword)
                 {
                     main_dashboard dashboard = new main_dashboard();
-                    dashboard.user = user;
                     dashboard.ShowDialog();
-                    
-                    
+                    this.Hide();
+                    dashboard.user = user;
+                     
+
+
                 }
                 else
                 {

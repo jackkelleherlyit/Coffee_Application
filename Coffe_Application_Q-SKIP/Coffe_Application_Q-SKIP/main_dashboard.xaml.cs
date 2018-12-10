@@ -51,10 +51,7 @@ namespace Coffe_Application_Q_SKIP
             nav.Navigate(new Uri("Login.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        internal void ShowDialog()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private void btnStock_Click(object sender, RoutedEventArgs e)
         {
@@ -72,6 +69,26 @@ namespace Coffe_Application_Q_SKIP
         {
             NavigationService nav = NavigationService.GetNavigationService(this);
             nav.Navigate(new Uri("Orders.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void checkUserAccess(User user)
+        {
+            if (user.user_type == "S")
+            {
+                btnCustomer_Order.Visibility = Visibility.Visible;
+                btnStock.Visibility = Visibility.Visible;
+            }
+            else if(user.user_type == "A")
+            {
+                btnUsers.Visibility = Visibility.Visible;
+                btnCustomer_Order.Visibility = Visibility.Visible;
+                btnStock.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            checkUserAccess(user);
         }
     }
 }
