@@ -10,79 +10,151 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
+        
+        
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
-        </Grid.ColumnDefinitions>
 
         
-        <StackPanel Name="stckList" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="0,10,0,10">
 
-            <ListBox  Name="listUsers"  HorizontalContentAlignment="Center" FontSize="16" FontWeight="Bold" Foreground="ForestGreen" Width="150"  HorizontalAlignment="Center" >
-                :USERS :
-            </ListBox>
+        <StackPanel>
+            <TabControl Height="400">
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Background" Value="Green"/>
+                        <Setter Property="FontFamily" Value="Calibri"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Padding" Value="10"/>
+                    </Style>
+                </TabControl.Resources>
+                <TabItem Header="Users">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="50*"/>
+                        </Grid.RowDefinitions>
+                        
+                        
+                        
+                        
+                        <ListView Name="lstUserList" Grid.Row="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="userID" Width="70">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
 
-            <ListBox Name="listBox1"  Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Jack Kelleher
-            </ListBox>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="email" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
+                                                    
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>  
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="first_name" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
 
-            <ListBox Name="listBox2" Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Lizzie Murphy
-            </ListBox>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="last_name" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
 
-            <ListBox  Name="listBox3" Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Shane Dundon
-            </ListBox>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="phonenumber" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
 
-            <ListBox Name="listBox4" Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Jason Francis
-            </ListBox>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="usertype" Width="70">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
 
-            <ListBox Name="listBox5" Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Sarah Hough
-            </ListBox>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
 
-            <ListBox Name="listBox6" Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Peter Hynes
-            </ListBox>
 
-            <ListBox Name="listBox7" Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Michael Gough
-            </ListBox>
+                        <StackPanel Name="stkUserDetails" Grid.Row="1" HorizontalAlignment="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*"/>
+                                    <ColumnDefinition Width="70*"/>
+                                </Grid.ColumnDefinitions>
 
-            <ListBox Name="listBox8" Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Sean O'Hair
-            </ListBox>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="25"/>
+                                    <RowDefinition Height="25"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Content="userID"/>
+                                <Label Grid.Row="1" Grid.Column="0" Content="email"/>
+                                <Label Grid.Row="2" Grid.Column="0" Content="firstname"/>
+                                <Label Grid.Row="3" Grid.Column="0" Content="secondname"/>
+                                <Label Grid.Row="4" Grid.Column="0" Content="phonenumber"/>
+                                <Label Grid.Row="5" Grid.Column="0" Content="usertype"/>
 
-            <ListBox Name="listBox9" Width="200" Grid.ColumnSpan="2" FontSize="16" FontWeight="Bold" Foreground="ForestGreen"   HorizontalAlignment="Center" >
-                Justin McCarthy
-            </ListBox>
-
+                                <TextBox Grid.Row="0" Grid.Column="1" Name="tbxuserID"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Name="tbxemail"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Name="tbxfirstname"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" Name="tbxlastname"/>
+                                <TextBox Grid.Row="4" Grid.Column="1" Name="tbxphonenumber"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Name="tbxusertype"/>
+                                <ComboBox Grid.Row="5" Grid.Column="1">
+                                    <ComboBoxItem Content="Customer"/>
+                                    <ComboBoxItem Content="Staff"/>
+                                    <ComboBoxItem Content="Administrator"/>
+                                </ComboBox>
+                                <Button Grid.Row="7" Grid.Column="1" Name="btnUpdate" Width="150" Height="26" HorizontalAlignment="Right" Content="Update">
+                                    
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Logs">
+                    
+                </TabItem>
+            </TabControl>
         </StackPanel>
 
-        <DockPanel Grid.ColumnSpan="4" Grid.Row="1"  Margin="3,10,3,0" >
-            <Border BorderThickness="3" 
-                    BorderBrush="Black"
-                    CornerRadius="10"
-                    Padding="4">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray"
-                                      Opacity="50"
-                                      ShadowDepth="4"/>
-                </Border.Effect>
-                <Frame Name="frmMain"/>
-            </Border>
-        </DockPanel>
+        
+            
+            
 
-        <Grid.Background>
+            <Grid.Background>
             <ImageBrush ImageSource="Images\coffeemaker.PNG"
                         Stretch="UniformToFill">
 

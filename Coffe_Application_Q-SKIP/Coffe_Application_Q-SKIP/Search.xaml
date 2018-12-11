@@ -18,11 +18,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
+            
         </Grid.ColumnDefinitions>
 
-        
 
+        
         <StackPanel Name="sctListBox" Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="0,10,0,10">
 
             <ListBox Name="listBoxSmall">
@@ -40,8 +40,7 @@
 
 
         </StackPanel>
-
-
+        
 
         <Grid.Background>
             <ImageBrush ImageSource="Images\coffeemaker.PNG"

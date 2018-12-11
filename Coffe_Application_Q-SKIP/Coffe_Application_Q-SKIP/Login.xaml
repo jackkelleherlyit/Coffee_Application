@@ -65,6 +65,7 @@
                     HorizontalAlignment="Center">
             <Button Name="btnClose" Content="Close" Height="26" Width="130"
                     Margin="1,10" ToolTip="Click this button to close"
+                    Click="btnClose_Click"
                     />
 
             <Button Name="btnOk" Content="Ok" Height="26" Width="130"

@@ -21,9 +21,8 @@
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
             <ColumnDefinition Width="50*"/>
+            
         </Grid.ColumnDefinitions>
-
-        
 
         
 
@@ -81,19 +80,7 @@
         </StackPanel>
 
 
-        <DockPanel Grid.ColumnSpan="4" Grid.Row="1"  Margin="3,10,3,0" >
-            <Border BorderThickness="3" 
-                    BorderBrush="Black"
-                    CornerRadius="10"
-                    Padding="4">
-                <Border.Effect>
-                    <DropShadowEffect Color="Gray"
-                                      Opacity="50"
-                                      ShadowDepth="4"/>
-                </Border.Effect>
-                <Frame Name="frmMain"/>
-            </Border>
-        </DockPanel>
+        
 
         <Grid.Background>
             <ImageBrush ImageSource="Images\coffeemaker.PNG"

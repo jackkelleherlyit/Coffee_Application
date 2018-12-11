@@ -24,5 +24,10 @@ namespace Coffe_Application_Q_SKIP
         {
             InitializeComponent();
         }
+
+        private void btnStock_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

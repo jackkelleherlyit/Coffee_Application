@@ -11,15 +11,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace Coffe_Application_Q_SKIP
 {
     /// <summary>
     /// Interaction logic for main_dashboard.xaml
     /// </summary>
-    public partial class main_dashboard : Page
+    public partial class main_dashboard : Window
     {
         public User user = new User();
 
@@ -30,55 +30,55 @@ namespace Coffe_Application_Q_SKIP
 
         private void btnCoffee_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Coffee.xaml", UriKind.RelativeOrAbsolute));
+            Coffee coffee = new Coffee();
+            frmMain_Dashboard.Navigate(coffee);
         }
 
         private void btnMyOrder_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Search.xaml", UriKind.RelativeOrAbsolute));
+            Search search = new Search();
+            frmMain_Dashboard.Navigate(search);
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Login.xaml", UriKind.RelativeOrAbsolute));
+            Exit exit = new Exit();
+            frmMain_Dashboard.Navigate(exit);
         }
 
-        
+
 
         private void btnStock_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Stock.xaml", UriKind.RelativeOrAbsolute));
+            Stock stock = new Stock();
+            frmMain_Dashboard.Navigate(stock);
         }
 
         private void btnUsers_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Users.xaml", UriKind.RelativeOrAbsolute));
+            Users users = new Users();
+            frmMain_Dashboard.Navigate(users);
         }
 
         private void btnCustomer_Order_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new Uri("Orders.xaml", UriKind.RelativeOrAbsolute));
+            Orders orders = new Orders();
+            frmMain_Dashboard.Navigate(orders);
         }
 
         private void checkUserAccess(User user)
         {
-            if (user.user_type == "S")
+            if (user.user_type == "2")
             {
                 btnCustomer_Order.Visibility = Visibility.Visible;
                 btnStock.Visibility = Visibility.Visible;
             }
-            else if(user.user_type == "A")
+            else if (user.user_type == "1")
             {
                 btnUsers.Visibility = Visibility.Visible;
                 btnCustomer_Order.Visibility = Visibility.Visible;
@@ -86,7 +86,9 @@ namespace Coffe_Application_Q_SKIP
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             checkUserAccess(user);
         }
