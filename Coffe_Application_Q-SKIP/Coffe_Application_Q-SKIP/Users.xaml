@@ -27,7 +27,7 @@
                         <Setter Property="Background" Value="Green"/>
                         <Setter Property="FontFamily" Value="Calibri"/>
                         <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="Padding" Value="10"/>
+                        
                     </Style>
                 </TabControl.Resources>
                 <TabItem Header="Users">
@@ -99,10 +99,32 @@
                                     </GridViewColumn>
                                 </GridView>
                             </ListView.View>
+
+                            <ListView.ContextMenu>
+                                <ContextMenu Name="mnuUserListOverview" IsEnabled="True">
+                                    <ContextMenu.Items>
+                                        <MenuItem Header="Add New User" Name="submenuAddNewUser" IsEnabled="True" Click="submenuAddNewUser_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/add.png" Stretch="Uniform"/>
+                                            </MenuItem.Icon>                                     
+                                        </MenuItem>
+                                        <MenuItem Header="Modify Selected User" Name="submenuModifyUser" IsEnabled="False" Click="submenuModifyUser_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/Modify.jpg" Stretch="Uniform"/>
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                            <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="False" Click="submenuDeleteUser_Click">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images/delete.png" Stretch="Uniform"/>
+                                            </MenuItem.Icon>
+                                            </MenuItem>
+                                    </ContextMenu.Items>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
                         </ListView>
 
 
-                        <StackPanel Name="stkUserDetails" Grid.Row="1" HorizontalAlignment="Center">
+                        <StackPanel Name="stkUserDetails" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30*"/>
@@ -137,7 +159,7 @@
                                     <ComboBoxItem Content="Staff"/>
                                     <ComboBoxItem Content="Administrator"/>
                                 </ComboBox>
-                                <Button Grid.Row="7" Grid.Column="1" Name="btnUpdate" Width="150" Height="26" HorizontalAlignment="Right" Content="Update">
+                                <Button Grid.Row="6" Grid.Column="1" Name="btnUpdate" Width="150" Height="26" HorizontalAlignment="Right" Content="Update" Click="btnUpdate_Click">
                                     
                                 </Button>
                             </Grid>

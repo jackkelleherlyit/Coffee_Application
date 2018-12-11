@@ -24,5 +24,25 @@ namespace Coffe_Application_Q_SKIP
         {
             InitializeComponent();
         }
+
+        private void submenuAddNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            stkUserDetails.Visibility = Visibility.Visible;
+        }
+
+        private void submenuModifyUser_Click(object sender, RoutedEventArgs e)
+        {
+            stkUserDetails.Visibility = Visibility.Visible;
+        }
+
+        private void submenuDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            stkUserDetails.Visibility = Visibility.Visible;
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            stkUserDetails.Visibility = Visibility.Collapsed;
+        }
     }
 }
