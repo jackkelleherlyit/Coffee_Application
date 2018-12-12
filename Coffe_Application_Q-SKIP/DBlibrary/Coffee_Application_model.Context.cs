@@ -13,9 +13,9 @@ namespace DBlibrary
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CoffeeDBEntities : DbContext
+    public partial class coffeeDBEntities : DbContext
     {
-        public CoffeeDBEntities(string connectionString)
+        public coffeeDBEntities(string connectionString)
             : base(connectionString)
         {
         }
@@ -28,5 +28,6 @@ namespace DBlibrary
         public virtual DbSet<Coffee> Coffees { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
     }
 }

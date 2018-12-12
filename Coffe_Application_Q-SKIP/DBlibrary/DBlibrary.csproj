@@ -73,6 +73,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Coffee_Application_model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>Coffee_Application_model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Order.cs">
       <DependentUpon>Coffee_Application_model.tt</DependentUpon>
     </Compile>

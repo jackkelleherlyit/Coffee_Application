@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="coffeeDBModel.User" Width="1.5" PointX="4.125" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="coffeeDBModel.FK_Order_ToCoffee" ManuallyRouted="false" />
         <AssociationConnector Association="coffeeDBModel.FK_Order_To_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="coffeeDBModel.Log" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
