@@ -45,39 +45,15 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="user_type" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Log_Log">
-          <End Role="Log" Type="Self.Log" Multiplicity="1" />
-          <End Role="Log1" Type="Self.Log" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Log">
-              <PropertyRef Name="LogID" />
-            </Principal>
-            <Dependent Role="Log1">
-              <PropertyRef Name="LogID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_To_Users">
+        <Association Name="FK_Log_User">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="user_ID" />
             </Principal>
-            <Dependent Role="Order">
+            <Dependent Role="Log">
               <PropertyRef Name="user_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_ToCoffee">
-          <End Role="Coffee" Type="Self.Coffee" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coffee">
-              <PropertyRef Name="coffee_ID" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="coffee_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -86,17 +62,9 @@
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Log_Log" Association="Self.FK_Log_Log">
-            <End Role="Log" EntitySet="Log" />
-            <End Role="Log1" EntitySet="Log" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_To_Users" Association="Self.FK_Order_To_Users">
+          <AssociationSet Name="FK_Log_User" Association="Self.FK_Log_User">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_ToCoffee" Association="Self.FK_Order_ToCoffee">
-            <End Role="Coffee" EntitySet="Coffee" />
-            <End Role="Order" EntitySet="Order" />
+            <End Role="Log" EntitySet="Log" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -136,6 +104,7 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="user_type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_To_Users" FromRole="Users" ToRole="Order" />
+          <NavigationProperty Name="Logs" Relationship="coffeeDBModel.FK_Log_User" FromRole="User" ToRole="Log" />
         </EntityType>
         <Association Name="FK_Order_ToCoffee">
           <End Role="Coffee" Type="Self.Coffee" Multiplicity="1" />
@@ -174,6 +143,14 @@
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <EntitySet Name="Logs" EntityType="coffeeDBModel.Log" />
+          <AssociationSet Name="FK_Log_User1" Association="coffeeDBModel.FK_Log_User1">
+            <End Role="Log" EntitySet="Logs" />
+            <End Role="Log1" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_User" Association="coffeeDBModel.FK_Log_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Log" EntitySet="Logs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Log">
           <Key>
@@ -184,7 +161,32 @@
           <Property Name="Category" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="coffeeDBModel.FK_Log_User" FromRole="Log" ToRole="User" />
           </EntityType>
+        <Association Name="FK_Log_User1">
+          <End Type="coffeeDBModel.Log" Role="Log" Multiplicity="1" />
+          <End Type="coffeeDBModel.Log" Role="Log1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Log">
+              <PropertyRef Name="LogID" />
+            </Principal>
+            <Dependent Role="Log1">
+              <PropertyRef Name="user_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_User">
+          <End Type="coffeeDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="coffeeDBModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="user_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
