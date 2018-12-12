@@ -22,7 +22,7 @@ namespace Coffe_Application_Q_SKIP
     public partial class Login : Page
     {
         
-        CoffeeDBEntities db = new CoffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.133;initial catalog=coffeeDB;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+        CoffeeDBEntities db = new CoffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.136;initial catalog=coffeeDB;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
         
 
         public Login()

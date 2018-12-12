@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBlibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,11 @@ namespace Coffe_Application_Q_SKIP
     /// </summary>
     public partial class Users : Page
     {
+
+        CoffeeDBEntities db = new CoffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.136;initial catalog=coffeeDB;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+
+        List<User> users = new List<User>();
+
         public Users()
         {
             InitializeComponent();
@@ -43,6 +49,16 @@ namespace Coffe_Application_Q_SKIP
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             stkUserDetails.Visibility = Visibility.Collapsed;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            lstUserList.ItemsSource = users;
+            foreach (var user in db.Users)
+            {
+                users.Add(user);
+            }
+         
         }
     }
 }

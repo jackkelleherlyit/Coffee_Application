@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Coffe_Application_Q_SKIP"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="Users">
 
     <Grid>
@@ -13,11 +14,11 @@
             <RowDefinition Height="90*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        
-        
 
 
-        
+
+
+
 
         <StackPanel>
             <TabControl Height="400">
@@ -27,26 +28,30 @@
                         <Setter Property="Background" Value="Green"/>
                         <Setter Property="FontFamily" Value="Calibri"/>
                         <Setter Property="BorderBrush" Value="Black"/>
-                        
+
                     </Style>
                 </TabControl.Resources>
                 <TabItem Header="Users">
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="146*"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50*"/>
                             <RowDefinition Height="50*"/>
                         </Grid.RowDefinitions>
-                        
-                        
-                        
-                        
-                        <ListView Name="lstUserList" Grid.Row="0">
+
+
+
+
+                        <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="userID" Width="70">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding user_ID}">
 
                                                 </TextBlock>
                                             </DataTemplate>
@@ -55,16 +60,16 @@
                                     <GridViewColumn Header="email" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
-                                                    
-                                                </TextBlock>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding email}"/>
+
+
                                             </DataTemplate>
-                                        </GridViewColumn.CellTemplate>  
+                                        </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
                                     <GridViewColumn Header="first_name" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding first_name}">
 
                                                 </TextBlock>
                                             </DataTemplate>
@@ -73,7 +78,7 @@
                                     <GridViewColumn Header="last_name" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding second_name}">
 
                                                 </TextBlock>
                                             </DataTemplate>
@@ -82,7 +87,7 @@
                                     <GridViewColumn Header="phonenumber" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding phone_number}">
 
                                                 </TextBlock>
                                             </DataTemplate>
@@ -91,7 +96,7 @@
                                     <GridViewColumn Header="usertype" Width="70">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap">
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding user_type}">
 
                                                 </TextBlock>
                                             </DataTemplate>
@@ -106,25 +111,25 @@
                                         <MenuItem Header="Add New User" Name="submenuAddNewUser" IsEnabled="True" Click="submenuAddNewUser_Click">
                                             <MenuItem.Icon>
                                                 <Image Source="Images/add.png" Stretch="Uniform"/>
-                                            </MenuItem.Icon>                                     
+                                            </MenuItem.Icon>
                                         </MenuItem>
                                         <MenuItem Header="Modify Selected User" Name="submenuModifyUser" IsEnabled="False" Click="submenuModifyUser_Click">
                                             <MenuItem.Icon>
                                                 <Image Source="Images/Modify.jpg" Stretch="Uniform"/>
                                             </MenuItem.Icon>
                                         </MenuItem>
-                                            <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="False" Click="submenuDeleteUser_Click">
+                                        <MenuItem Header="Delete Selected User" Name="submenuDeleteUser" IsEnabled="False" Click="submenuDeleteUser_Click">
                                             <MenuItem.Icon>
                                                 <Image Source="Images/delete.png" Stretch="Uniform"/>
                                             </MenuItem.Icon>
-                                            </MenuItem>
+                                        </MenuItem>
                                     </ContextMenu.Items>
                                 </ContextMenu>
                             </ListView.ContextMenu>
                         </ListView>
 
 
-                        <StackPanel Name="stkUserDetails" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
+                        <StackPanel Name="stkUserDetails" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden" Grid.Column="1" Margin="211.5,0,276,0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30*"/>
@@ -160,23 +165,32 @@
                                     <ComboBoxItem Content="Administrator"/>
                                 </ComboBox>
                                 <Button Grid.Row="6" Grid.Column="1" Name="btnUpdate" Width="150" Height="26" HorizontalAlignment="Right" Content="Update" Click="btnUpdate_Click">
-                                    
+
                                 </Button>
                             </Grid>
                         </StackPanel>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Logs">
-                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                    </Grid>
                 </TabItem>
             </TabControl>
         </StackPanel>
 
-        
-            
-            
 
-            <Grid.Background>
+
+
+
+        <Grid.Background>
             <ImageBrush ImageSource="Images\coffeemaker.PNG"
                         Stretch="UniformToFill">
 

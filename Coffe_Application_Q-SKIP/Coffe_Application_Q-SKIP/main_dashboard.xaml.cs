@@ -48,7 +48,7 @@ namespace Coffe_Application_Q_SKIP
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             Exit exit = new Exit();
-            frmMain_Dashboard.Navigate(exit);
+            Environment.Exit(0);
         }
 
 
