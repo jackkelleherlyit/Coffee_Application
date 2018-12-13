@@ -25,6 +25,7 @@ namespace Coffe_Application_Q_SKIP
         coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.136;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
 
         List<User> users = new List<User>();
+        List<Log> logs = new List<Log>();
 
         public Users()
         {
@@ -54,10 +55,17 @@ namespace Coffe_Application_Q_SKIP
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             lstUserList.ItemsSource = users;
+            lstLogList.ItemsSource = logs;
             foreach (var user in db.Users)
             {
                 users.Add(user);
             }
+
+            foreach (var log in db.Logs)
+            {
+                logs.Add(log);
+            }
+          
          
         }
     }

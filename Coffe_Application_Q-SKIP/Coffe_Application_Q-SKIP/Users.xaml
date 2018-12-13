@@ -16,10 +16,6 @@
         </Grid.RowDefinitions>
 
 
-
-
-
-
         <StackPanel>
             <TabControl Height="400">
                 <TabControl.Resources>
@@ -173,14 +169,45 @@
                 </TabItem>
                 <TabItem Header="Logs">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="50*"/>
-                            <ColumnDefinition Width="50*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50*"/>
-                            <RowDefinition Height="50"/>
-                        </Grid.RowDefinitions>
+                      
+
+                        <ListView Name="lstLogList" Grid.Row="0" Grid.ColumnSpan="2">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Category" Width="70">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Category}">
+
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Description" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Description}"/>
+
+
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="Date" Width="150">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding Date}">
+
+                                                </TextBlock>
+                                           
+                                                
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+
+                            
+                        </ListView>
                     </Grid>
                 </TabItem>
             </TabControl>
