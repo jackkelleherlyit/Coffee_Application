@@ -35,6 +35,7 @@ namespace Coffe_Application_Q_SKIP
         private void submenuAddNewUser_Click(object sender, RoutedEventArgs e)
         {
             stkUserDetails.Visibility = Visibility.Visible;
+            stkUserPanel.Visibility = Visibility.Visible;
         }
 
         private void submenuModifyUser_Click(object sender, RoutedEventArgs e)
@@ -54,12 +55,9 @@ namespace Coffe_Application_Q_SKIP
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            lstUserList.ItemsSource = users;
+            RefreshUserList();
             lstLogList.ItemsSource = logs;
-            foreach (var user in db.Users)
-            {
-                users.Add(user);
-            }
+            
 
             foreach (var log in db.Logs)
             {
@@ -68,5 +66,53 @@ namespace Coffe_Application_Q_SKIP
           
          
         }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            User user = new User();
+            user.email = tbxEmail.Text.Trim();
+            user.first_name = tbxUserFirstName.Text.Trim();
+            user.last_name = tbxUserLastName.Text.Trim();
+            user.password = tbxPassword.Text.Trim();
+            user.user_type = (Int16)cboUserType.SelectedIndex;           
+            int saveSuccess = SaveUser(user);
+            if(saveSuccess == 1)
+            {
+                MessageBox.Show("User successfully added");
+                RefreshUserList();
+                ClearUserDetails();
+            }
+            else
+            {
+                MessageBox.Show("Failed !  : Make sure you enter the correct details");
+            }
+        }
+        public int SaveUser(User user)
+        {
+            db.Entry(user).State = System.Data.Entity.EntityState.Added;
+            int saveSuccess = db.SaveChanges();
+            return saveSuccess;
+        }
+
+        private void RefreshUserList()
+        {
+            lstUserList.ItemsSource = users;
+            users.Clear();
+            foreach (var user in db.Users)
+            {
+                users.Add(user);
+            }
+        }
+
+        private void ClearUserDetails()
+        {
+            tbxUserFirstName.Text = "";
+            tbxemail.Text = "";
+            tbxUserLastName.Text = "";
+            tbxemail.Text = "";
+            tbxPassword.Text = "";
+            cboUserType.SelectedIndex = 0;
+        }
+        
     }
 }

@@ -73,12 +73,12 @@ namespace Coffe_Application_Q_SKIP
 
         private void checkUserAccess(User user)
         {
-            if (user.user_type == "2")
+            if (user.user_type == 2)
             {
                 btnCustomer_Order.Visibility = Visibility.Visible;
                 btnStock.Visibility = Visibility.Visible;
             }
-            else if (user.user_type == "1")
+            else if (user.user_type == 3)
             {
                 btnUsers.Visibility = Visibility.Visible;
                 btnCustomer_Order.Visibility = Visibility.Visible;

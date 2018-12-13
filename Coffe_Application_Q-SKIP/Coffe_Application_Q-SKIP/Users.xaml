@@ -29,19 +29,13 @@
                 </TabControl.Resources>
                 <TabItem Header="Users">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="13*"/>
-                            <ColumnDefinition Width="146*"/>
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50*"/>
-                            <RowDefinition Height="50*"/>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
                         </Grid.RowDefinitions>
-
-
-
-
-                        <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2">
+                        
+                        
+                       <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="userID" Width="70">
@@ -74,7 +68,7 @@
                                     <GridViewColumn Header="last_name" Width="150">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding second_name}">
+                                                <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding last_name}">
 
                                                 </TextBlock>
                                             </DataTemplate>
@@ -122,9 +116,72 @@
                                     </ContextMenu.Items>
                                 </ContextMenu>
                             </ListView.ContextMenu>
-                        </ListView>
+                        </ListView> 
+
+                        <StackPanel Name="stkUserPanel" Grid.Row="1" Visibility="Visible">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Row 1-->
+                                <Label Grid.Row="0" Grid.Column="0" Content="Email" Background="LightGray" />
+                                <TextBox Name="tbxEmail" Grid.Row="0" Grid.Column="1" />
+
+                                <!--Row 2-->
+                                <Label Grid.Row="1" Grid.Column="0" Content="FirstName" Background="LightGray"/>
+                                <TextBox Name="tbxUserFirstName" Grid.Row="1" Grid.Column="1"/>
+
+                                <!--Row 3-->
+                                <Label Grid.Row="2" Grid.Column="0" Content="LastName" Background="LightGray"/>
+                                <TextBox Name="tbxUserLastName" Grid.Row="2" Grid.Column="1"/>
+                             
+
+                                <!--Row 4-->
+                                <Label Grid.Row="3" Grid.Column="0" Content="Phone No (Optional)" Background="LightGray"/>
+                                <TextBox Name="tbxPhoneNumber" Grid.Row="3" Grid.Column="1"/>
+
+                                <!--Row 5-->
+                                <Label Grid.Row="4" Grid.Column="0" Content="Password" Background="LightGray"/>
+                                <TextBox Name="tbxPassword" Grid.Row="4" Grid.Column="1"/>
+                                
+                                <!--Row 6-->
+                                <Label Grid.Row="5" Grid.Column="0" Content="user_type" Background="LightGray"/>
+                                <ComboBox Name="cboUserType" Grid.Row="5" Grid.Column="1">
+                                <ComboBoxItem Content="Please Select"/>
+                                <ComboBoxItem Content="Customer" Background="LightGreen"/>
+                                <ComboBoxItem Content="Staff" Background="LightGreen"/>
+                                    
+                                </ComboBox>
+                                
+                                <!--Row 6-->
+                                <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnCancel" Width="100" Content="Cancel" Margin="10,0"/>
+                                    <Button Name="btnOk" Width="100" Content="OK" Margin="10,0" Background="LightBlue" Click="btnOk_Click"/>
+                                </StackPanel>
 
 
+
+
+
+
+
+
+                            </Grid>                            
+                        </StackPanel>
+                        
+                        
                         <StackPanel Name="stkUserDetails" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden" Grid.Column="1" Margin="211.5,0,276,0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
