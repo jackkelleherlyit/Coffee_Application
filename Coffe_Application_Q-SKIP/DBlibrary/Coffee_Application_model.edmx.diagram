@@ -11,8 +11,6 @@
         <AssociationConnector Association="coffeeDBModel.FK_Order_ToCoffee" ManuallyRouted="false" />
         <AssociationConnector Association="coffeeDBModel.FK_Order_To_Users" ManuallyRouted="false" />
         <EntityTypeShape EntityType="coffeeDBModel.Log" Width="1.5" PointX="1.75" PointY="3.625" />
-        <AssociationConnector Association="coffeeDBModel.FK_Log_User1" ManuallyRouted="false" >
-        </AssociationConnector>
         <AssociationConnector Association="coffeeDBModel.FK_Log_User" />
       </Diagram>
     </edmx:Diagrams>

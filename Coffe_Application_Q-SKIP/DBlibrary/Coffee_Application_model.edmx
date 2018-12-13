@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="LogID" />
           </Key>
-          <Property Name="LogID" Type="int" Nullable="false" />
+          <Property Name="LogID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="user_ID" Type="int" Nullable="false" />
           <Property Name="Category" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
@@ -143,10 +143,6 @@
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <EntitySet Name="Logs" EntityType="coffeeDBModel.Log" />
-          <AssociationSet Name="FK_Log_User1" Association="coffeeDBModel.FK_Log_User1">
-            <End Role="Log" EntitySet="Logs" />
-            <End Role="Log1" EntitySet="Logs" />
-          </AssociationSet>
           <AssociationSet Name="FK_Log_User" Association="coffeeDBModel.FK_Log_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Log" EntitySet="Logs" />
@@ -156,25 +152,13 @@
           <Key>
             <PropertyRef Name="LogID" />
           </Key>
-          <Property Name="LogID" Type="Int32" Nullable="false" />
+          <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_ID" Type="Int32" Nullable="false" />
           <Property Name="Category" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="User" Relationship="coffeeDBModel.FK_Log_User" FromRole="Log" ToRole="User" />
           </EntityType>
-        <Association Name="FK_Log_User1">
-          <End Type="coffeeDBModel.Log" Role="Log" Multiplicity="1" />
-          <End Type="coffeeDBModel.Log" Role="Log1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Log">
-              <PropertyRef Name="LogID" />
-            </Principal>
-            <Dependent Role="Log1">
-              <PropertyRef Name="user_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Log_User">
           <End Type="coffeeDBModel.User" Role="User" Multiplicity="1" />
           <End Type="coffeeDBModel.Log" Role="Log" Multiplicity="*" />
