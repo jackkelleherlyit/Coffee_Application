@@ -185,5 +185,16 @@ namespace Coffe_Application_Q_SKIP
                 }
             }
         }
+
+
+        //Get the details of the content insde the comboBox
+      /*  private void cboUserType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var theComboBox = (ComboBox)sender;
+            ComboBoxItem item = (ComboBoxItem)theComboBox.SelectedItem;
+            string value = item.Content.ToString();
+            MessageBox.Show("Content of ComboBox is" + value);
+        }
+        */
     }
 }

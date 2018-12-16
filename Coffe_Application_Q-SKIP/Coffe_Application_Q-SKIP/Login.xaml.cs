@@ -1,6 +1,7 @@
 ﻿using DBlibrary;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,9 +134,17 @@ namespace Coffe_Application_Q_SKIP
         private User GetUserRecord(string email, string password)
         {
             User validatedUser = new User();
-            foreach (var user in db.Users.Where(t => t.email == email && t.password == password))
+            try
             {
-                validatedUser = user;
+                foreach (var user in db.Users.Where(t => t.email == email && t.password == password))
+                {
+                    validatedUser = user;
+                }
+            }
+            catch (EntityException )
+            {
+                MessageBox.Show("Problem connecting to the SQL server , Closing application" , "connectToDatabase", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
             }
             return validatedUser;
         }
