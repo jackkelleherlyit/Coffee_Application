@@ -31,47 +31,49 @@ namespace Coffe_Application_Q_SKIP
             InitializeComponent();
         }
 
-        
+
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             User validatedUser = new User();
             bool login = false;
+            bool ValidateCredentials = false;
 
             string currentUser = tbxUsrName.Text;
             string currentPassword = tbxPassword.Password;
-            foreach (var user in db.Users)
-            {
-                if (user.email == currentUser && user.password == currentPassword)
-                {
-                     
-                    login = true;
-                    validatedUser = user;
+            ValidateCredentials = ValidateUserInput(currentUser, currentPassword);
 
+            if (ValidateCredentials)
+            {
+                validatedUser = GetUserRecord(currentUser, currentPassword);
+                if (validatedUser.user_ID > 0)
+                {
+                    CreateLogEntry("Login", "logged in", validatedUser.user_ID, validatedUser.email);
+                    main_dashboard dashboard = new main_dashboard();
+                    dashboard.user = validatedUser;
+                    // dashboard.Owner = this;
+                    dashboard.ShowDialog();
+                    //this.Hide();
                 }
                 else
-                {                    
-                    lblErrorMessage.Content = "Error : Username or Password incorrect";
+                {
+                    MessageBox.Show("Credentials do not exists", "User Login", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //CreateLogEntry("Login", "User did not log in successfully.", 2, validatedUser.email);
                 }
-            }
-            if (login)
-            {
-                CreateLogEntry("Login", "logged in", validatedUser.user_ID, validatedUser.email);
-                 main_dashboard dashboard = new main_dashboard();
-                 dashboard.user = validatedUser;
-                 dashboard.ShowDialog();
-                //this.Hide();
+
             }
             else
             {
-                CreateLogEntry("Login", "User did not log in successfully.", 2, validatedUser.email);
+                MessageBox.Show("Error with your username or password.", "User Login", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            
+
+
             // NavigationService nav = NavigationService.GetNavigationService(this);
             //nav.Navigate(new Uri("main_dashboard.xaml", UriKind.RelativeOrAbsolute));
 
         }
+
 
 
         private void CreateLogEntry(string category, string description, int user_ID, string userName)
@@ -83,7 +85,7 @@ namespace Coffe_Application_Q_SKIP
             log.Description = comment;
             log.Date = DateTime.Now;
             SaveLog(log);
-       }
+        }
 
 
         private void SaveLog(Log log)
@@ -95,9 +97,53 @@ namespace Coffe_Application_Q_SKIP
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
 
-           Environment.Exit(0);
+            Environment.Exit(0);
         }
 
-        
+
+
+        //validates user credentials against those in the SQL database
+
+        private bool ValidateUserInput(string email, string password)   //email and password are entered by the user
+        {
+            //it's easier to set validated to false inside the checks than it is to validate each check
+
+            bool validated = true;
+
+
+            //email(username) can contain special chars and numbers but must be less than 30 chars
+            if (email.Length == 0 || email.Length > 30)
+            {
+                validated = false;
+            }
+
+
+            // password must exist and can't be longer than 30 chars
+            if (password.Length == 0 || password.Length > 30)
+            {
+                validated = false;
+            }
+            return validated;
+        }
+
+
+        //Gets the username and password passed to the method
+        //from the Users table in the SQL database
+
+        private User GetUserRecord(string email, string password)
+        {
+            User validatedUser = new User();
+            foreach (var user in db.Users.Where(t => t.email == email && t.password == password))
+            {
+                validatedUser = user;
+            }
+            return validatedUser;
+        }
+
     }
+
 }
+
+
+
+
