@@ -22,10 +22,20 @@ namespace Coffe_Application_Q_SKIP
     public partial class Users : Page
     {
 
-        coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.139;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+        coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.142;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
 
         List<User> users = new List<User>();
         List<Log> logs = new List<Log>();
+        User selectedUser = new User();
+
+        enum DBOperation
+        {
+            Add,
+            Modify,
+            Delete
+        }
+
+        DBOperation dbOperation = new DBOperation();
 
         public Users()
         {
@@ -34,13 +44,14 @@ namespace Coffe_Application_Q_SKIP
 
         private void submenuAddNewUser_Click(object sender, RoutedEventArgs e)
         {
-            stkUserDetails.Visibility = Visibility.Visible;
+            //stkUserDetails.Visibility = Visibility.Visible;
             stkUserPanel.Visibility = Visibility.Visible;
         }
 
         private void submenuModifyUser_Click(object sender, RoutedEventArgs e)
         {
-            stkUserDetails.Visibility = Visibility.Visible;
+            stkUserPanel.Visibility = Visibility.Visible;
+            dbOperation = DBOperation.Modify;
         }
 
         private void submenuDeleteUser_Click(object sender, RoutedEventArgs e)
@@ -69,24 +80,48 @@ namespace Coffe_Application_Q_SKIP
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User();
-            user.email = tbxEmail.Text.Trim();
-            user.first_name = tbxUserFirstName.Text.Trim();
-            user.last_name = tbxUserLastName.Text.Trim();
-            user.password = tbxPassword.Text.Trim();
-            user.user_type = (Int16)cboUserType.SelectedIndex;           
-            int saveSuccess = SaveUser(user);
-            if(saveSuccess == 1)
+            if (dbOperation == DBOperation.Add)
             {
-                MessageBox.Show("User successfully added");
-                RefreshUserList();
-                ClearUserDetails();
+                User user = new User();
+                user.email = tbxEmail.Text.Trim();
+                user.first_name = tbxUserFirstName.Text.Trim();
+                user.last_name = tbxUserLastName.Text.Trim();
+                user.password = tbxPassword.Text.Trim();
+                user.user_type = (Int16)cboUserType.SelectedIndex;
+                int saveSuccess = SaveUser(user);
+                if (saveSuccess == 1)
+                {
+                    MessageBox.Show("User successfully added");
+                    RefreshUserList();
+                    ClearUserDetails();
+                }
+                else
+                {
+                    MessageBox.Show("Failed !  : Make sure you enter the correct details");
+                }
             }
-            else
+            if (dbOperation == DBOperation.Modify)
             {
-                MessageBox.Show("Failed !  : Make sure you enter the correct details");
+                foreach (var user in db.Users.Where(t => t.user_ID == selectedUser.user_ID))
+                {
+                    user.first_name = tbxUserFirstName.Text.Trim();
+                    user.last_name = tbxUserLastName.Text.Trim();
+                    user.password = tbxPassword.Text.Trim();
+                    user.email = tbxEmail.Text.Trim();
+                    user.user_type = (Int16)cboUserType.SelectedIndex;
+                }
+                int saveSuccess =  db.SaveChanges();
+                if(saveSuccess == 1)
+                {
+                    MessageBox.Show("User modified successfully", "Save to database", MessageBoxButton.OK, MessageBoxImage.Information);
+                    RefreshUserList();
+                    ClearUserDetails();
+                    stkUserPanel.Visibility = Visibility.Collapsed;
+                }
+
             }
         }
+            
         public int SaveUser(User user)
         {
             db.Entry(user).State = System.Data.Entity.EntityState.Added;
@@ -102,6 +137,7 @@ namespace Coffe_Application_Q_SKIP
             {
                 users.Add(user);
             }
+            lstUserList.Items.Refresh();
         }
 
         private void ClearUserDetails()
@@ -112,7 +148,23 @@ namespace Coffe_Application_Q_SKIP
             tbxemail.Text = "";
             tbxPassword.Text = "";
             cboUserType.SelectedIndex = 0;
+            tbxEmail.Text = "";
         }
-        
+
+        private void lstUserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                 selectedUser = users.ElementAt(lstUserList.SelectedIndex);
+            if (selectedUser.user_ID > 0)
+            {
+                submenuModifyUser.IsEnabled = true;
+                tbxUserFirstName.Text = selectedUser.first_name;
+                tbxUserLastName.Text = selectedUser.last_name;
+                tbxPassword.Text = selectedUser.password;
+                tbxEmail.Text = selectedUser.email;
+                cboUserType.SelectedIndex = selectedUser.user_type;
+
+            }
+                
+        }
     }
 }

@@ -35,7 +35,7 @@
                         </Grid.RowDefinitions>
                         
                         
-                       <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2">
+                       <ListView Name="lstUserList" Grid.Row="0" Grid.ColumnSpan="2" SelectionChanged="lstUserList_SelectionChanged">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="userID" Width="70">
@@ -166,7 +166,7 @@
                                 </ComboBox>
                                 
                                 <!--Row 6-->
-                                <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button Name="btnCancel" Width="100" Content="Cancel" Margin="10,0"/>
                                     <Button Name="btnOk" Width="100" Content="OK" Margin="10,0" Background="LightBlue" Click="btnOk_Click"/>
                                 </StackPanel>
