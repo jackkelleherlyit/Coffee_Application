@@ -56,7 +56,19 @@ namespace Coffe_Application_Q_SKIP
 
         private void submenuDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-            stkUserDetails.Visibility = Visibility.Visible;
+            db.Users.RemoveRange(db.Users.Where(t => t.user_ID == selectedUser.user_ID));
+            int saveSuccess = db.SaveChanges();
+            if (saveSuccess == 1)
+            {
+                MessageBox.Show("User Deleted", "Save to database", MessageBoxButton.OK, MessageBoxImage.Information);
+                RefreshUserList();
+                ClearUserDetails();
+                stkUserPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("An Error occurred", "Delete from database", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -68,14 +80,14 @@ namespace Coffe_Application_Q_SKIP
         {
             RefreshUserList();
             lstLogList.ItemsSource = logs;
-            
+
 
             foreach (var log in db.Logs)
             {
                 logs.Add(log);
             }
-          
-         
+
+
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
@@ -94,6 +106,7 @@ namespace Coffe_Application_Q_SKIP
                     MessageBox.Show("User successfully added");
                     RefreshUserList();
                     ClearUserDetails();
+                    stkUserPanel.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
@@ -110,8 +123,8 @@ namespace Coffe_Application_Q_SKIP
                     user.email = tbxEmail.Text.Trim();
                     user.user_type = (Int16)cboUserType.SelectedIndex;
                 }
-                int saveSuccess =  db.SaveChanges();
-                if(saveSuccess == 1)
+                int saveSuccess = db.SaveChanges();
+                if (saveSuccess == 1)
                 {
                     MessageBox.Show("User modified successfully", "Save to database", MessageBoxButton.OK, MessageBoxImage.Information);
                     RefreshUserList();
@@ -121,7 +134,7 @@ namespace Coffe_Application_Q_SKIP
 
             }
         }
-            
+
         public int SaveUser(User user)
         {
             db.Entry(user).State = System.Data.Entity.EntityState.Added;
@@ -153,18 +166,21 @@ namespace Coffe_Application_Q_SKIP
 
         private void lstUserList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                 selectedUser = users.ElementAt(lstUserList.SelectedIndex);
-            if (selectedUser.user_ID > 0)
+            if (lstUserList.SelectedIndex > 0)
             {
-                submenuModifyUser.IsEnabled = true;
-                tbxUserFirstName.Text = selectedUser.first_name;
-                tbxUserLastName.Text = selectedUser.last_name;
-                tbxPassword.Text = selectedUser.password;
-                tbxEmail.Text = selectedUser.email;
-                cboUserType.SelectedIndex = selectedUser.user_type;
+                selectedUser = users.ElementAt(lstUserList.SelectedIndex);
+                
+                    submenuModifyUser.IsEnabled = true;
+                    submenuDeleteUser.IsEnabled = true;
+                    tbxUserFirstName.Text = selectedUser.first_name;
+                    tbxUserLastName.Text = selectedUser.last_name;
+                    tbxPassword.Text = selectedUser.password;
+                    tbxEmail.Text = selectedUser.email;
+                    cboUserType.SelectedIndex = selectedUser.user_type;
+
+                
 
             }
-                
         }
     }
 }
