@@ -5,126 +5,93 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Coffe_Application_Q_SKIP"
       mc:Ignorable="d" 
+      Loaded="Page_Loaded"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Coffee">
 
     <Grid>
+        <StackPanel>
+            <TabControl Height="400">
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontFamily" Value="Calibri"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Style>
+                </TabControl.Resources>
+
+                <TabItem Header="Coffee">
+                    <Grid>
+                        <StackPanel Name="stkCoffeePanel" Visibility="Visible">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="1*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!--Row 0-->
+                                <Label Grid.Row="0" Content="Please enter Coffee details" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
+
+                                <!--Row 1-->
+                                <Label Grid.Row="1" Grid.Column="0" Content="Coffee Type" Background="LightCoral"/>
+                                <ComboBox Name="cboCoffee" Grid.Row="1" Grid.Column="1" SelectionChanged="cboCoffee_SelectionChanged">
+                                    <ComboBoxItem Content="Please Select"/>
+                                    <ComboBoxItem Content="Americano" Background="LightGreen"/>
+                                    <ComboBoxItem Content="Cappuccino" Background="LightGreen"/>
+                                    <ComboBoxItem Content="Latte" Background="LightGreen"/>
+                                    <ComboBoxItem Content="Espresso" Background="LightGreen"/>
+                                    <ComboBoxItem Content="Flat White" Background="LightGreen"/>
 
 
+                                </ComboBox>
+                                <!--Row 2-->
+                                <Label Grid.Row="2" Grid.Column="0" Content="Size" Background="LightCoral"/>
+                                <ComboBox Name="cboCoffeeSize" Grid.Row="2" Grid.Column="1" SelectionChanged="cboCoffeeSize_SelectionChanged">
+                                    <ComboBoxItem Content="Please Select"/>
+                                    <ComboBoxItem Content="Small" Background="LightBlue"/>
+                                    <ComboBoxItem Content="Medium" Background="LightBlue"/>
+                                    <ComboBoxItem Content="Large" Background="LightBlue"/>
+                                </ComboBox>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="170"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+                                
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
-            <ColumnDefinition Width="50*"/>
+                                <!--Row 4-->
+                                <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Name="btnCancel" Width="100" Content="Cancel" Margin="10,0" Click="btnCancel_Click"/>
+                                    <Button Name="btnOk" Width="100" Content="OK" Margin="10,0" Background="LightBlue" Click="btnOk_Click"/>
+                                </StackPanel>
 
-        </Grid.ColumnDefinitions>
-
-        <DatePicker  Grid.Row="2"
-                     Grid.Column="2"
-                     Name="CalendarPicker">
-
-            <DatePicker.Resources>
-                <Style TargetType="DatePickerTextBox">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <TextBox Text="{Binding Path=SelectedDate, 
-                                    RelativeSource={RelativeSource AncestorType=DatePicker}
-                                    , StringFormat={}{0:dd/MM/yyyy hh:mm:ss}}"/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </DatePicker.Resources>
-        </DatePicker>
-
-
-
-
-        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="10,10,80,10">
-
-            <CheckBox Name="chkAmericano" Margin="5" FontFamily="CASTELLAR" Foreground="Gold">
-                Americano
-            </CheckBox>
-
-            <CheckBox Name="chkLate" Margin="5" FontFamily="CASTELLAR" Foreground="Gold">
-                Late
-            </CheckBox>
-
-            <CheckBox Name="chkCappuccino" Margin="5" FontFamily="CASTELLAR" Foreground="Gold">
-                Cappuccino
-            </CheckBox>
-
-            <CheckBox Name="chkFlatWhit" Margin="5" FontFamily="CASTELLAR" Foreground="Gold">
-                Flat White
-            </CheckBox>
-
-            <CheckBox Name="chkEspresso" Margin="5" FontFamily="CASTELLAR" Foreground="Gold">
-                Espresso
-            </CheckBox>
-
-            <CheckBox Name="chkMacchiato" Margin="5" FontFamily="CASTELLAR" Foreground="Gold">
-                Macchiato
-            </CheckBox>
-
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
         </StackPanel>
-
-        <StackPanel Name="sctSize" Grid.Row="2" Grid.Column="1" Orientation="Vertical" Margin="10,10,120,10">
-
-
-
-            <CheckBox Name="chkSmall" Margin="5" FontFamily="CASTELLAR" Foreground="RED">
-                SMALL
-            </CheckBox>
-
-
-            <CheckBox Name="chkMedium" Margin="5" FontFamily="CASTELLAR" Foreground="RED">
-                MEDIUM
-            </CheckBox>
-
-            <CheckBox Name="chkLarge" Margin="5" FontFamily="CASTELLAR" Foreground="RED">
-                LARGE
-            </CheckBox>
-
-        </StackPanel>
-
-
-
-        <StackPanel Grid.ColumnSpan="4" Grid.Row="4" Grid.Column="0" Orientation="Vertical" Margin="0,10,0,10" >
-          
-
-            <Button
-              Name="btnSubmit"
-                Grid.Column="3"
-                Grid.Row="5"
-               VerticalAlignment="Bottom"
-                    Height="34"
-                    Width="100"
-                    FontWeight="Heavy"
-                    Content="Submit"
-                    Margin="350,0"
-                    Click="btnSubmit_Click"
-             ></Button>
-        </StackPanel>
-
-
-
-        <Frame Name="frmCoffee" NavigationUIVisibility="Automatic"/>
-
-
-        <Grid.Background>
-            <ImageBrush ImageSource="Images\coffeemaker.PNG"
-                        Stretch="UniformToFill">
-
-            </ImageBrush>
-        </Grid.Background>
     </Grid>
+    
+    
+    
+    
+    
+    
+    
 </Page>

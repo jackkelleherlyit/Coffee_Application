@@ -13,9 +13,9 @@ namespace DBlibrary
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class coffeeDBEntities : DbContext
+    public partial class appDBEntities : DbContext
     {
-        public coffeeDBEntities(string connectionString)
+        public appDBEntities(string connectionString)
             : base(connectionString)
         {
         }

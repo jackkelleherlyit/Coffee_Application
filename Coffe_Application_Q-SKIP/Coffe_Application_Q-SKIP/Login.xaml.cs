@@ -23,7 +23,7 @@ namespace Coffe_Application_Q_SKIP
     public partial class Login : Page
     {
 
-        coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.142;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+        appDBEntities db = new appDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.140;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
 
 
 
@@ -36,6 +36,7 @@ namespace Coffe_Application_Q_SKIP
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            
             User validatedUser = new User();
             bool login = false;
             bool ValidateCredentials = false;
@@ -53,8 +54,9 @@ namespace Coffe_Application_Q_SKIP
                     main_dashboard dashboard = new main_dashboard();
                     dashboard.user = validatedUser;
                     // dashboard.Owner = this;
-                    dashboard.ShowDialog();
                     //this.Hide();
+                    dashboard.ShowDialog();
+                    
                 }
                 else
                 {
@@ -75,7 +77,10 @@ namespace Coffe_Application_Q_SKIP
 
         }
 
-
+        private void Hide()
+        {
+            Environment.Exit(0);
+        }
 
         private void CreateLogEntry(string category, string description, int user_ID, string userName)
         {

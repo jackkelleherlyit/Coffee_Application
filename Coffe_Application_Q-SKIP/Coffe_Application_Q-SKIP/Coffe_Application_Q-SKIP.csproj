@@ -188,15 +188,15 @@
     <Resource Include="Images\coffeemaker.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\modify.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DBlibrary\DBlibrary.csproj">
       <Project>{559e454b-8b50-414d-8c3e-4ae0a00c6ba8}</Project>
       <Name>DBlibrary</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\add.png" />
-    <Resource Include="Images\delete.png" />
-    <Resource Include="Images\modify.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

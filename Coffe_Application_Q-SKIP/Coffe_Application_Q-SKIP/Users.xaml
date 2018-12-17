@@ -158,7 +158,7 @@
                                 
                                 <!--Row 6-->
                                 <Label Grid.Row="5" Grid.Column="0" Content="user_type" Background="LightGray"/>
-                                <ComboBox Name="cboUserType" Grid.Row="5" Grid.Column="1" SelectionChanged="cboUserType_SelectionChanged">
+                                <ComboBox Name="cboUserType" Grid.Row="5" Grid.Column="1">
                                 <ComboBoxItem Content="Please Select"/>
                                 <ComboBoxItem Content="Customer" Background="LightGreen"/>
                                 <ComboBoxItem Content="Staff" Background="LightGreen"/>
