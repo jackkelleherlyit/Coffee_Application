@@ -1,5 +1,4 @@
-﻿using DBlibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,24 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DBlibrary;
+
 
 namespace Coffe_Application_Q_SKIP
 {
 
-   
+ 
     /// <summary>
     /// Interaction logic for Coffee.xaml
     /// </summary>
     public partial class Coffee : Page
     {
 
-        appDBEntities db = new appDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.140;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
-
-        List<Coffee> coffees = new List<Coffee>();
+        coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.145;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework&quot'"); List<Coffee> coffees = new List<Coffee>();
         List<Order> orders = new List<Order>();
-        Coffee selectedCoffee = new Coffee();
+        List<CoffeeOrder> coffeeOrders = new List<CoffeeOrder>();
+        CoffeeOrder selectedCoffee = new CoffeeOrder();
 
+        enum DBOperation
+        {
+            Add,           
+        }
 
+        DBOperation dbOperation = new DBOperation();
 
 
         public Coffee()
@@ -46,9 +51,10 @@ namespace Coffe_Application_Q_SKIP
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            Coffee coffee = new Coffee();
-            coffee.cup_size = cboCoffee.SelectedItem;
-            coffee.coffee_type = cboCoffeeSize.SelectedItem;
+            
+            CoffeeOrder coffee = new CoffeeOrder();
+            coffee.coffeeType = (string)cboCoffee.SelectedItem;
+            coffee.cupSize = (string)cboCoffeeSize.SelectedItem; 
             int saveSuccess = SaveCoffee(coffee);
             if (saveSuccess == 1)
             {
@@ -64,7 +70,7 @@ namespace Coffe_Application_Q_SKIP
         }
 
 
-        public int SaveCoffee(Coffee coffee)
+        public int SaveCoffee(CoffeeOrder coffee)
         {
             db.Entry(coffee).State = System.Data.Entity.EntityState.Added;
             int saveSuccess = db.SaveChanges();
@@ -73,16 +79,22 @@ namespace Coffe_Application_Q_SKIP
 
         private void cboCoffeeSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (cboCoffeeSize.SelectedIndex > 0)
+            {
+                cboCoffeeSize.SelectedItem = selectedCoffee;
+            }
+            else
+                MessageBox.Show("No value picked up");
         }
 
         private void cboCoffee_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cboCoffee.SelectedIndex > 0)
             {
-                selectedCoffee = coffees.ElementAt(cboCoffee.SelectedIndex);
-                clearCoffeeDetails();
+                cboCoffee.SelectedItem = selectedCoffee ;               
             }
+            else
+                MessageBox.Show("No value picked up");
         }
 
         private void clearCoffeeDetails()

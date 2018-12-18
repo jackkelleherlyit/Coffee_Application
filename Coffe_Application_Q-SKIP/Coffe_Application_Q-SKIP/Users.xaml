@@ -118,7 +118,7 @@
                             </ListView.ContextMenu>
                         </ListView> 
 
-                        <StackPanel Name="stkUserPanel" Grid.Row="1" Visibility="Collapsed">
+                        <StackPanel Name="stkUserPanel" Grid.Row="1" Visibility="Visible">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3*"/>

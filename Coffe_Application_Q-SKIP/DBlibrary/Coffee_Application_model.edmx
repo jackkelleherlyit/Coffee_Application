@@ -5,13 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="coffeeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Coffee">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'coffeeDB.dbo.CoffeeOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CoffeeOrder">
           <Key>
+            <PropertyRef Name="coffeeType" />
+            <PropertyRef Name="cupSize" />
             <PropertyRef Name="coffee_ID" />
           </Key>
-          <Property Name="coffee_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cup_size" Type="char" MaxLength="10" Nullable="false" />
-          <Property Name="coffee_type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="coffeeType" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="cupSize" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="coffee_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -58,10 +62,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="coffeeDBModelStoreContainer">
-          <EntitySet Name="Coffee" EntityType="Self.Coffee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoffeeOrder" EntityType="Self.CoffeeOrder" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CoffeeOrder].[coffeeType] AS [coffeeType], 
+    [CoffeeOrder].[cupSize] AS [cupSize], 
+    [CoffeeOrder].[coffee_ID] AS [coffee_ID]
+    FROM [dbo].[CoffeeOrder] AS [CoffeeOrder]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Log_User" Association="Self.FK_Log_User">
             <End Role="Users" EntitySet="Users" />
             <End Role="Log" EntitySet="Log" />
@@ -71,15 +81,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="coffeeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Coffee">
-          <Key>
-            <PropertyRef Name="coffee_ID" />
-          </Key>
-          <Property Name="coffee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cup_size" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="coffee_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_ToCoffee" FromRole="Coffee" ToRole="Order" />
-        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="order_number" />
@@ -89,7 +90,6 @@
           <Property Name="collection_time" Type="Time" Nullable="false" Precision="7" />
           <Property Name="order_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="user_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Coffee" Relationship="Self.FK_Order_ToCoffee" FromRole="Order" ToRole="Coffee" />
           <NavigationProperty Name="User" Relationship="Self.FK_Order_To_Users" FromRole="Order" ToRole="Users" />
         </EntityType>
         <EntityType Name="User">
@@ -106,18 +106,6 @@
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_To_Users" FromRole="Users" ToRole="Order" />
           <NavigationProperty Name="Logs" Relationship="coffeeDBModel.FK_Log_User" FromRole="User" ToRole="Log" />
         </EntityType>
-        <Association Name="FK_Order_ToCoffee">
-          <End Role="Coffee" Type="Self.Coffee" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coffee">
-              <PropertyRef Name="coffee_ID" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="coffee_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_To_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -131,13 +119,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="coffeeDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Coffees" EntityType="Self.Coffee" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Order_ToCoffee" Association="Self.FK_Order_ToCoffee">
-            <End Role="Coffee" EntitySet="Coffees" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_To_Users" Association="Self.FK_Order_To_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Order" EntitySet="Orders" />
@@ -147,6 +130,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Log" EntitySet="Logs" />
           </AssociationSet>
+          <EntitySet Name="CoffeeOrders" EntityType="coffeeDBModel.CoffeeOrder" />
         </EntityContainer>
         <EntityType Name="Log">
           <Key>
@@ -171,21 +155,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CoffeeOrder">
+          <Key>
+            <PropertyRef Name="coffeeType" />
+            <PropertyRef Name="cupSize" />
+            <PropertyRef Name="coffee_ID" />
+          </Key>
+          <Property Name="coffeeType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cupSize" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="coffee_ID" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="coffeeDBModelStoreContainer" CdmEntityContainer="coffeeDBEntities">
-          <EntitySetMapping Name="Coffees">
-            <EntityTypeMapping TypeName="coffeeDBModel.Coffee">
-              <MappingFragment StoreEntitySet="Coffee">
-                <ScalarProperty Name="coffee_ID" ColumnName="coffee_ID" />
-                <ScalarProperty Name="cup_size" ColumnName="cup_size" />
-                <ScalarProperty Name="coffee_type" ColumnName="coffee_type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="coffeeDBModel.Order">
               <MappingFragment StoreEntitySet="Order">
@@ -218,6 +203,15 @@
                 <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="user_ID" ColumnName="user_ID" />
                 <ScalarProperty Name="LogID" ColumnName="LogID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoffeeOrders">
+            <EntityTypeMapping TypeName="coffeeDBModel.CoffeeOrder">
+              <MappingFragment StoreEntitySet="CoffeeOrder">
+                <ScalarProperty Name="coffee_ID" ColumnName="coffee_ID" />
+                <ScalarProperty Name="cupSize" ColumnName="cupSize" />
+                <ScalarProperty Name="coffeeType" ColumnName="coffeeType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

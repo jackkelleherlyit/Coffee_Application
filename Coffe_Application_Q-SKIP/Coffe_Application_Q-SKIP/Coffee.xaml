@@ -22,7 +22,7 @@
                     </Style>
                 </TabControl.Resources>
 
-                <TabItem Header="Coffee">
+                <TabItem Header="Order Coffee">
                     <Grid>
                         <StackPanel Name="stkCoffeePanel" Visibility="Visible">
                             <Grid>

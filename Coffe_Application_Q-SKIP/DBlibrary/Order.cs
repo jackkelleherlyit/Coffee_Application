@@ -20,7 +20,7 @@ namespace DBlibrary
         public System.DateTime order_date { get; set; }
         public int user_ID { get; set; }
     
-        public virtual Coffee Coffee { get; set; }
+        public virtual CoffeeOrder Coffee { get; set; }
         public virtual User User { get; set; }
     }
 }

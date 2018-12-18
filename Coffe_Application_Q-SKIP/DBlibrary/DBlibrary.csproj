@@ -56,7 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Coffee.cs">
+    <Compile Include="CoffeeOrder.cs">
       <DependentUpon>Coffee_Application_model.tt</DependentUpon>
     </Compile>
     <Compile Include="Coffee_Application_model.Context.cs">

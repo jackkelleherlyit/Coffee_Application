@@ -13,9 +13,9 @@ namespace DBlibrary
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class appDBEntities : DbContext
+    public partial class coffeeDBEntities : DbContext
     {
-        public appDBEntities(string connectionString)
+        public coffeeDBEntities(string connectionString)
             : base(connectionString)
         {
         }
@@ -25,9 +25,9 @@ namespace DBlibrary
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Coffee> Coffees { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
+        public virtual DbSet<CoffeeOrder> CoffeeOrders { get; set; }
     }
 }

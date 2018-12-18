@@ -12,19 +12,10 @@ namespace DBlibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Coffee
+    public partial class CoffeeOrder
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Coffee()
-        {
-            this.Orders = new HashSet<Order>();
-        }
-    
+        public string coffeeType { get; set; }
+        public string cupSize { get; set; }
         public int coffee_ID { get; set; }
-        public string cup_size { get; set; }
-        public string coffee_type { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
     }
 }
