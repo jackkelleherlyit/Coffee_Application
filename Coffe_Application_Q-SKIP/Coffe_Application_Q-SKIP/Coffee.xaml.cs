@@ -1,31 +1,24 @@
-﻿using System;
+﻿using DatabaseLibrary;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-using DBlibrary;
 
 
 namespace Coffe_Application_Q_SKIP
 {
+   
 
- 
     /// <summary>
     /// Interaction logic for Coffee.xaml
     /// </summary>
     public partial class Coffee : Page
     {
 
-        coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.145;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework&quot'"); List<Coffee> coffees = new List<Coffee>();
+        coffeeDBEntities db = new coffeeDBEntities("metadata = res://*/Q-SKIPmodel.csdl|res://*/Q-SKIPmodel.ssdl|res://*/Q-SKIPmodel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.145;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
+
+
         List<Order> orders = new List<Order>();
         List<CoffeeOrder> coffeeOrders = new List<CoffeeOrder>();
         CoffeeOrder selectedCoffee = new CoffeeOrder();
@@ -53,15 +46,13 @@ namespace Coffe_Application_Q_SKIP
         {
             
             CoffeeOrder coffee = new CoffeeOrder();
-            coffee.coffeeType = (string)cboCoffee.SelectedItem;
-            coffee.cupSize = (string)cboCoffeeSize.SelectedItem; 
+            coffee.coffeeType = cboCoffee.Text;
+            coffee.cupSize = cboCoffeeSize.Text; 
             int saveSuccess = SaveCoffee(coffee);
             if (saveSuccess == 1)
             {
                 MessageBox.Show("Coffee Ordered Successfully");
-              //  RefreshUserList();
                 clearCoffeeDetails();
-              //  stkUserPanel.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -104,16 +95,16 @@ namespace Coffe_Application_Q_SKIP
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            clearCoffeeDetails();
         }
-     /*  
-        private void RefreshTypeList()
+       
+      /*  private void RefreshTypeList()
         {
 
             coffees.Clear();
-            foreach ( var coffeeType in db.Coffees)
+            foreach ( var  in db.CoffeeOrders)
             {
-                coffees.Add(coffeeType);
+                coffees.Add(value);
             }
             cboCoffee.ItemsSource = coffees;
             cboCoffee.Items.Refresh();
@@ -122,7 +113,7 @@ namespace Coffe_Application_Q_SKIP
         private void RefreshSizeList()
         {
             sizeList.Clear();
-            foreach (var coffeeSize in db.Coffees)
+            foreach (var coffeeSize in db.CoffeeOrders)
             {
                 sizeList.Add(coffeeSize);
             }
@@ -130,7 +121,7 @@ namespace Coffe_Application_Q_SKIP
             cboCoffeeSize.Items.Refresh();
         }
         */
-        
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
            // RefreshSizeList();

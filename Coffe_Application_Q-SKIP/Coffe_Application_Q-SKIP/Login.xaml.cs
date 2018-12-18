@@ -1,4 +1,4 @@
-﻿using DBlibrary;
+﻿using DatabaseLibrary;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core;
@@ -23,8 +23,7 @@ namespace Coffe_Application_Q_SKIP
     public partial class Login : Page
     {
 
-        coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Coffee_Application_model.csdl|res://*/Coffee_Application_model.ssdl|res://*/Coffee_Application_model.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.145;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework&quot'");
-
+        coffeeDBEntities db = new coffeeDBEntities("metadata = res://*/Q-SKIPmodel.csdl|res://*/Q-SKIPmodel.ssdl|res://*/Q-SKIPmodel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.145;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
 
         public Login()
         {

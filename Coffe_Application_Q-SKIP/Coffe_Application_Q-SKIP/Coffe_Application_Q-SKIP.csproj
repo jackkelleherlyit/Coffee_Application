@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -193,9 +195,12 @@
     <Resource Include="Images\modify.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DBlibrary\DBlibrary.csproj">
-      <Project>{559e454b-8b50-414d-8c3e-4ae0a00c6ba8}</Project>
-      <Name>DBlibrary</Name>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseLibrary\DatabaseLibrary.csproj">
+      <Project>{E12225F8-2381-4B1F-BF21-F53A8193A5D7}</Project>
+      <Name>DatabaseLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

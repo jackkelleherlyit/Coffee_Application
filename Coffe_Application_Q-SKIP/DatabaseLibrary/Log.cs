@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DBlibrary
+namespace DatabaseLibrary
 {
     using System;
     using System.Collections.Generic;

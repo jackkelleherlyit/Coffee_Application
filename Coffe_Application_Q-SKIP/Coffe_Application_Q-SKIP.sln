@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coffe_Application_Q-SKIP", "Coffe_Application_Q-SKIP\Coffe_Application_Q-SKIP.csproj", "{F4F4A089-0C8C-46B6-B421-6C66D8536668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBlibrary", "DBlibrary\DBlibrary.csproj", "{559E454B-8B50-414D-8C3E-4AE0A00C6BA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLibrary", "DatabaseLibrary\DatabaseLibrary.csproj", "{E12225F8-2381-4B1F-BF21-F53A8193A5D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F4F4A089-0C8C-46B6-B421-6C66D8536668}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4F4A089-0C8C-46B6-B421-6C66D8536668}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4F4A089-0C8C-46B6-B421-6C66D8536668}.Release|Any CPU.Build.0 = Release|Any CPU
-		{559E454B-8B50-414D-8C3E-4AE0A00C6BA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{559E454B-8B50-414D-8C3E-4AE0A00C6BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{559E454B-8B50-414D-8C3E-4AE0A00C6BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{559E454B-8B50-414D-8C3E-4AE0A00C6BA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E12225F8-2381-4B1F-BF21-F53A8193A5D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E12225F8-2381-4B1F-BF21-F53A8193A5D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E12225F8-2381-4B1F-BF21-F53A8193A5D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E12225F8-2381-4B1F-BF21-F53A8193A5D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
