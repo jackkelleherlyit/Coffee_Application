@@ -17,5 +17,7 @@ namespace DatabaseLibrary
         public string coffeeType { get; set; }
         public string cupSize { get; set; }
         public int coffee_ID { get; set; }
+    
+        public virtual Order Order { get; set; }
     }
 }

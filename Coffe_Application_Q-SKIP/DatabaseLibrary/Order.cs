@@ -19,5 +19,8 @@ namespace DatabaseLibrary
         public System.TimeSpan collection_time { get; set; }
         public System.DateTime order_date { get; set; }
         public int user_ID { get; set; }
+    
+        public virtual CoffeeOrder CoffeeOrder { get; set; }
+        public virtual User User { get; set; }
     }
 }

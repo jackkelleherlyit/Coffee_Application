@@ -23,8 +23,7 @@ namespace Coffe_Application_Q_SKIP
     public partial class Login : Page
     {
 
-        coffeeDBEntities db = new coffeeDBEntities("metadata = res://*/Q-SKIPmodel.csdl|res://*/Q-SKIPmodel.ssdl|res://*/Q-SKIPmodel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.145;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
-
+        coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Q-SKIPmodel.csdl|res://*/Q-SKIPmodel.ssdl|res://*/Q-SKIPmodel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.134;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
         public Login()
         {
             InitializeComponent();
@@ -146,7 +145,7 @@ namespace Coffe_Application_Q_SKIP
             }
             catch (EntityException )
             {
-                MessageBox.Show("Problem connecting to the SQL server , Closing application" , "connectToDatabase", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Problem connecting to the SQL server . Closing application" , "connectToDatabase", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
             return validatedUser;

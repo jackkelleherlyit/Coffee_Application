@@ -5,11 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ba66fff61b8641eca164d4c05ffddb84" Name="Diagram1">
-        <EntityTypeShape EntityType="coffeeDBModel.CoffeeOrder" Width="1.5" PointX="2.625" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="coffeeDBModel.Log" Width="1.5" PointX="7.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="coffeeDBModel.Order" Width="1.5" PointX="7" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="coffeeDBModel.User" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
-        <AssociationConnector Association="coffeeDBModel.FK_Log_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="coffeeDBModel.CoffeeOrder" Width="1.5" PointX="7" PointY="5.25" />
+        <EntityTypeShape EntityType="coffeeDBModel.Log" Width="1.5" PointX="6.75" PointY="1.5" />
+        <EntityTypeShape EntityType="coffeeDBModel.Order" Width="1.5" PointX="2" PointY="3.375" />
+        <EntityTypeShape EntityType="coffeeDBModel.User" Width="1.5" PointX="4.5" PointY="1.375" />
+        <AssociationConnector Association="coffeeDBModel.FK_Log_User" />
+        <AssociationConnector Association="coffeeDBModel.FK_CoffeeOrder_Order" />
+        <AssociationConnector Association="coffeeDBModel.FK_Order_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,6 +18,7 @@ namespace DatabaseLibrary
         public User()
         {
             this.Logs = new HashSet<Log>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int user_ID { get; set; }
@@ -30,5 +31,7 @@ namespace DatabaseLibrary
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Log> Logs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
