@@ -53,26 +53,16 @@
 
                                 <!--Row 1-->
                                 <Label Grid.Row="1" Grid.Column="0" Content="Coffee Type" Background="LightCoral"/>
-                                <ComboBox Name="cboCoffee" Grid.Row="1" Grid.Column="1" SelectionChanged="cboCoffee_SelectionChanged">
-                                    <ComboBoxItem Content="Please Select"/>
-                                    <ComboBoxItem Content="Americano" Background="LightGreen"/>
-                                    <ComboBoxItem Content="Cappuccino" Background="LightGreen"/>
-                                    <ComboBoxItem Content="Latte" Background="LightGreen"/>
-                                    <ComboBoxItem Content="Espresso" Background="LightGreen"/>
-                                    <ComboBoxItem Content="Flat White" Background="LightGreen"/>
+                                <TextBox Name="tbxCoffeeType" Grid.Row="1" Grid.Column="1"/>
 
 
-                                </ComboBox>
+
+
                                 <!--Row 2-->
                                 <Label Grid.Row="2" Grid.Column="0" Content="Size" Background="LightCoral"/>
-                                <ComboBox Name="cboCoffeeSize" Grid.Row="2" Grid.Column="1" SelectionChanged="cboCoffeeSize_SelectionChanged">
-                                    <ComboBoxItem Content="Please Select"/>
-                                    <ComboBoxItem Content="Small" Background="LightBlue"/>
-                                    <ComboBoxItem Content="Medium" Background="LightBlue"/>
-                                    <ComboBoxItem Content="Large" Background="LightBlue"/>
-                                </ComboBox>
+                                <TextBox Name="tbxCoffeeSize" Grid.Row="2" Grid.Column="1"/>
 
-                                
+
 
                                 <!--Row 4-->
                                 <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">

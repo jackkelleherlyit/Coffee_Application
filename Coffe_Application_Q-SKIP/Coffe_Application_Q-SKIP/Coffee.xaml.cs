@@ -18,8 +18,8 @@ namespace Coffe_Application_Q_SKIP
 
         coffeeDBEntities db = new coffeeDBEntities("metadata=res://*/Q-SKIPmodel.csdl|res://*/Q-SKIPmodel.ssdl|res://*/Q-SKIPmodel.msl;provider=System.Data.SqlClient;provider connection string='data source=192.168.164.134;initial catalog=coffeeDB;persist security info=True;user id=CoffeeUser;password=password;pooling=False;MultipleActiveResultSets=True;App=EntityFramework'");
 
-        List<Order> orders = new List<Order>();
-        List<CoffeeOrder> coffeeOrders = new List<CoffeeOrder>();
+      //  List<Order> orders = new List<Order>();
+     //   List<CoffeeOrder> coffeeOrders = new List<CoffeeOrder>();
         CoffeeOrder selectedCoffee = new CoffeeOrder();
 
         enum DBOperation
@@ -45,51 +45,32 @@ namespace Coffe_Application_Q_SKIP
         {
             
             CoffeeOrder coffee = new CoffeeOrder();
-            coffee.coffeeType = cboCoffee.Text;
-            coffee.cupSize = cboCoffeeSize.Text; 
-            int saveSuccess = SaveCoffee(coffee);
-            if (saveSuccess == 1)
-            {
+            coffee.coffeeType = tbxCoffeeType.Text;
+            coffee.cupSize = tbxCoffeeSize.Text;
+            SaveCoffee(coffee);
+            
                 MessageBox.Show("Coffee Ordered Successfully");
                 clearCoffeeDetails();
-            }
-            else
-            {
-                MessageBox.Show("Failed !  : We are out of stock");
-            }
+
+            tbxCoffeeType.Text = "";
+            tbxCoffeeSize.Text = "";
+            
         }
 
 
-        public int SaveCoffee(CoffeeOrder coffee)
+        public void SaveCoffee(CoffeeOrder coffee)
         {
             db.Entry(coffee).State = System.Data.Entity.EntityState.Added;
-            int saveSuccess = db.SaveChanges();
-            return saveSuccess;
+            db.SaveChanges();
+            
         }
 
-        private void cboCoffeeSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cboCoffeeSize.SelectedIndex > 0)
-            {
-                cboCoffeeSize.SelectedItem = selectedCoffee;
-            }
-            else
-                MessageBox.Show("No value picked up");
-        }
+        
 
-        private void cboCoffee_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cboCoffee.SelectedIndex > 0)
-            {
-                cboCoffee.SelectedItem = selectedCoffee ;               
-            }
-            else
-                MessageBox.Show("No value picked up");
-        }
-
+       
         private void clearCoffeeDetails()
         {
-            cboCoffee.SelectedIndex = 0;
+            
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -126,5 +107,7 @@ namespace Coffe_Application_Q_SKIP
            // RefreshSizeList();
            // RefreshTypeList();
         }
+
+        
     }
 }

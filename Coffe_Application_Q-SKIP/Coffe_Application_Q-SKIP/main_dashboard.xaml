@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Coffe_Application_Q_SKIP"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="main_dashboard" Height="450" Width="800">
+        Title="main_dashboard" Height="800" Width="800">
+       
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

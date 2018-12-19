@@ -51,7 +51,7 @@ namespace Coffe_Application_Q_SKIP
                     main_dashboard dashboard = new main_dashboard();
                     dashboard.user = validatedUser;
                     // dashboard.Owner = this;
-                    //this.Hide();
+                    Hide();
                     dashboard.ShowDialog();
                     
                 }

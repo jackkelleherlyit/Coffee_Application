@@ -25,9 +25,8 @@
         </EntityType>
         <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="order_number" />
+            <PropertyRef Name="user_ID" />
           </Key>
-          <Property Name="order_number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="coffee_ID" Type="int" Nullable="false" />
           <Property Name="collection_time" Type="time" Precision="7" Nullable="false" />
           <Property Name="order_date" Type="date" Nullable="false" />
@@ -45,18 +44,6 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="user_type" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_CoffeeOrder_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="CoffeeOrder" Type="Self.CoffeeOrder" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="order_number" />
-            </Principal>
-            <Dependent Role="CoffeeOrder">
-              <PropertyRef Name="coffee_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Log_User">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Log" Type="Self.Log" Multiplicity="*" />
@@ -69,15 +56,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+        <Association Name="FK_Order_CoffeeOrder">
+          <End Role="CoffeeOrder" Type="Self.CoffeeOrder" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="user_ID" />
+            <Principal Role="CoffeeOrder">
+              <PropertyRef Name="coffee_ID" />
             </Principal>
             <Dependent Role="Order">
-              <PropertyRef Name="user_ID" />
+              <PropertyRef Name="coffee_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -86,16 +73,12 @@
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CoffeeOrder_Order" Association="Self.FK_CoffeeOrder_Order">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="CoffeeOrder" EntitySet="CoffeeOrder" />
-          </AssociationSet>
           <AssociationSet Name="FK_Log_User" Association="Self.FK_Log_User">
             <End Role="Users" EntitySet="Users" />
             <End Role="Log" EntitySet="Log" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Users" Association="Self.FK_Order_Users">
-            <End Role="Users" EntitySet="Users" />
+          <AssociationSet Name="FK_Order_CoffeeOrder" Association="Self.FK_Order_CoffeeOrder">
+            <End Role="CoffeeOrder" EntitySet="CoffeeOrder" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
         </EntityContainer>
@@ -112,10 +95,6 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Log" EntitySet="Logs" />
           </AssociationSet>
-          <AssociationSet Name="FK_CoffeeOrder_Order" Association="coffeeDBModel.FK_CoffeeOrder_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="CoffeeOrder" EntitySet="CoffeeOrders" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Users" Association="coffeeDBModel.FK_Order_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="Order" EntitySet="Orders" />
@@ -128,8 +107,7 @@
           <Property Name="coffeeType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="cupSize" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="coffee_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="coffeeDBModel.FK_CoffeeOrder_Order" FromRole="CoffeeOrder" ToRole="Order" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Log">
           <Key>
             <PropertyRef Name="LogID" />
@@ -143,14 +121,12 @@
         </EntityType>
         <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="order_number" />
+            <PropertyRef Name="coffee_ID" />
           </Key>
-          <Property Name="order_number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="coffee_ID" Type="Int32" Nullable="false" />
           <Property Name="collection_time" Type="Time" Nullable="false" Precision="7" />
           <Property Name="order_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="user_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CoffeeOrder" Relationship="coffeeDBModel.FK_CoffeeOrder_Order" FromRole="Order" ToRole="CoffeeOrder" />
           <NavigationProperty Name="User" Relationship="coffeeDBModel.FK_Order_Users" FromRole="Order" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
@@ -176,18 +152,6 @@
             </Principal>
             <Dependent Role="Log">
               <PropertyRef Name="user_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CoffeeOrder_Order">
-          <End Type="coffeeDBModel.Order" Role="Order" Multiplicity="1" />
-          <End Type="coffeeDBModel.CoffeeOrder" Role="CoffeeOrder" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="order_number" />
-            </Principal>
-            <Dependent Role="CoffeeOrder">
-              <PropertyRef Name="coffee_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -236,7 +200,6 @@
                 <ScalarProperty Name="order_date" ColumnName="order_date" />
                 <ScalarProperty Name="collection_time" ColumnName="collection_time" />
                 <ScalarProperty Name="coffee_ID" ColumnName="coffee_ID" />
-                <ScalarProperty Name="order_number" ColumnName="order_number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
